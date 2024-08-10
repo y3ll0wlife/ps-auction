@@ -21,19 +21,20 @@ WORKDIR /psauction-bot
 
 COPY ./ .
 
+RUN cargo install sqlx-cli --no-default-features --features postgres
+RUN cargo sqlx prepare
+
+ENV SQLX_OFFLINE=true
+
 RUN cargo build --target x86_64-unknown-linux-musl --release
 
-# Image
 FROM scratch
 
-# Import from builder.
-COPY --from=builder /etc/passwd /etc/passwd
 COPY --from=builder /etc/group /etc/group
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
 WORKDIR /psauction-bot
 
-# Copy our build
 COPY --from=builder /psauction-bot/target/x86_64-unknown-linux-musl/release/psauction-bot ./
 
 CMD ["/psauction-bot/psauction-bot"]
