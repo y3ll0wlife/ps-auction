@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n                    UPDATE auctionitems\n                    SET item_price = $1\n                    WHERE item_id = $2\n                    ",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Int4",
+        "Int4"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "ad0f2464ce93757df11fb7ae5bb3bad7348bdecb2bae25da8cb27abee47a646d"
+}

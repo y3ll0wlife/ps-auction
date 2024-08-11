@@ -1,0 +1,50 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n                        INSERT INTO auctionitems (item_id, auction_id, item_name, item_price, item_url)\n                        VALUES ($1, $2, $3, $4, $5)\n                        RETURNING *\n                        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "item_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "auction_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 2,
+        "name": "item_name",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 3,
+        "name": "item_price",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 4,
+        "name": "item_url",
+        "type_info": "Varchar"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int4",
+        "Int4",
+        "Varchar",
+        "Int4",
+        "Varchar"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "e4dbd6be305c37074aa44c9d0720e1a1201ea0e146d798214ff942a2ca106787"
+}
