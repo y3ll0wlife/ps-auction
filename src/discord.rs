@@ -15,7 +15,10 @@ pub async fn new_item(item: &Item) -> Result<(), SerenityError> {
             .title(item.name.clone())
             .field(
                 "Price",
-                &item.leadingbid.clone().unwrap_or_else(|| String::from("0")),
+                &item
+                    .leading_bid
+                    .clone()
+                    .unwrap_or_else(|| String::from("0")),
                 true,
             )
             .field("Slug", &item.slug, true)
@@ -37,6 +40,7 @@ pub async fn new_item(item: &Item) -> Result<(), SerenityError> {
                 format!("[Link]({})", &item.get_item_url()),
                 true,
             )
+            .field("End in", &item.get_end_time(), true)
             .image(&item.thumbnail)
     });
 
@@ -66,7 +70,9 @@ pub async fn send_update(
             ItemChanges::Price => description.push(format!(
                 "**Price**\n{} ➜ {}",
                 previous_item.item_price,
-                item.leadingbid.clone().unwrap_or_else(|| String::from("0"))
+                item.leading_bid
+                    .clone()
+                    .unwrap_or_else(|| String::from("0"))
             )),
         }
     }
@@ -80,6 +86,7 @@ pub async fn send_update(
                 format!("[Link]({})", &item.get_item_url()),
                 true,
             )
+            .field("End in", &item.get_end_time(), true)
             .image(&item.thumbnail)
     });
 

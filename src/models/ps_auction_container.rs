@@ -37,7 +37,8 @@ pub struct Item {
     pub thumbnail_content_type: String,
     pub number: String,
     pub name: String,
-    pub endtime: String,
+    #[serde(rename = "endtime")]
+    pub end_time: String,
     pub location: String,
     pub site: String,
     pub transsite: String,
@@ -49,7 +50,8 @@ pub struct Item {
     #[serde(rename = "reachedreservationprice")]
     pub reached_reservation_price: bool,
     pub zero_reserve_price: bool,
-    pub leadingbid: Option<String>,
+    #[serde(rename = "leadingbid")]
+    pub leading_bid: Option<String>,
     pub leading: bool,
     pub leading_with_shipping: bool,
     pub leading_without_shipping: bool,
@@ -91,6 +93,10 @@ impl Item {
             "https://psauction.se/item/view/{}/{}",
             self.number, self.slug
         )
+    }
+
+    pub fn get_end_time(&self) -> String {
+        String::new()
     }
 }
 

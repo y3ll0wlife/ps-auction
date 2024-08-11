@@ -41,7 +41,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             println!("Fully new auction, adding all items");
             for item in &scrape.items {
                 let price = item
-                    .leadingbid
+                    .leading_bid
                     .clone()
                     .unwrap_or_else(|| String::from("0"))
                     .replace(".00", "")
@@ -70,7 +70,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             let mut changes: Vec<ItemChanges> = vec![];
 
             let item_price = item
-                .leadingbid
+                .leading_bid
                 .clone()
                 .unwrap_or_else(|| String::from("0"))
                 .replace(".00", "")
