@@ -1,0 +1,71 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n                    INSERT INTO auctionitems (item_id, auction_id, item_name, item_price, item_url, is_active, is_cancelled, is_visible)\n                    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)\n                    RETURNING *\n                    ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "item_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "auction_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 2,
+        "name": "item_name",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 3,
+        "name": "item_price",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 4,
+        "name": "item_url",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 5,
+        "name": "is_active",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 6,
+        "name": "is_cancelled",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 7,
+        "name": "is_visible",
+        "type_info": "Bool"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int4",
+        "Int4",
+        "Varchar",
+        "Int4",
+        "Varchar",
+        "Bool",
+        "Bool",
+        "Bool"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "948a822abfd0a67d147a3cb1f8770ef12ca86a98af3551eae08b3e5f862e34d8"
+}

@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n                    UPDATE auctionitems\n                    SET is_visible = $1\n                    WHERE item_id = $2\n                    ",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Bool",
+        "Int4"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "20e80ee8e6c8b3ca0e4293f76ff453c2c4eb0040b7ee2edfe37a33e0c4ee7dd6"
+}

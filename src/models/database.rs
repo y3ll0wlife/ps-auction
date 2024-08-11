@@ -14,4 +14,7 @@ pub struct AuctionItem {
     pub item_name: String,
     pub item_price: i32,
     pub item_url: String,
+    pub is_active: bool,
+    pub is_cancelled: bool,
+    pub is_visible: bool,
 }

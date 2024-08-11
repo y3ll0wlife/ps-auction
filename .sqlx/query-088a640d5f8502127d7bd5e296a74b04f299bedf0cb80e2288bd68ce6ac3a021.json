@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n                    UPDATE auctionitems\n                    SET is_cancelled = $1\n                    WHERE item_id = $2\n                    ",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Bool",
+        "Int4"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "088a640d5f8502127d7bd5e296a74b04f299bedf0cb80e2288bd68ce6ac3a021"
+}

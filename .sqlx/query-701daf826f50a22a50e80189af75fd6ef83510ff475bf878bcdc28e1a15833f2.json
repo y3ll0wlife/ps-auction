@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n                    UPDATE auctionitems\n                    SET is_active = $1\n                    WHERE item_id = $2\n                    ",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Bool",
+        "Int4"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "701daf826f50a22a50e80189af75fd6ef83510ff475bf878bcdc28e1a15833f2"
+}

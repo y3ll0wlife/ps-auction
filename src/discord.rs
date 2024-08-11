@@ -5,6 +5,16 @@ use serenity::prelude::SerenityError;
 use serenity::{http::Http, model::channel::Embed, model::webhook::Webhook, utils::Colour};
 use std::env;
 
+const GREEN_TICK: &str = "<:greenTick:851441548922847262>";
+const RED_TICK: &str = "<:redTick:851441548994412614>";
+
+fn get_boolean_emoji(value: &bool) -> String {
+    match value {
+        true => GREEN_TICK.to_string(),
+        false => RED_TICK.to_string(),
+    }
+}
+
 pub async fn new_item(item: &Item) -> Result<(), SerenityError> {
     let http: Http = Http::new("token");
     let token = env::var("WEBHOOK_URL").expect("missing WEBHOOK_URL in .env");
@@ -33,7 +43,7 @@ pub async fn new_item(item: &Item) -> Result<(), SerenityError> {
                 true,
             )
             .field("Location", &item.location, true)
-            .field("AI Cancelled", &item.ai_cancelled, true)
+            .field("AI Cancelled", get_boolean_emoji(&item.ai_cancelled), true)
             .field(
                 "Link to product",
                 format!("[Link]({})", &item.get_item_url()),
@@ -72,6 +82,21 @@ pub async fn send_update(
                 item.leading_bid
                     .clone()
                     .unwrap_or_else(|| String::from("0.00"))
+            )),
+            ItemChanges::Active => description.push(format!(
+                "**Is Active**\n{} ➜ {}",
+                get_boolean_emoji(&previous_item.is_active),
+                get_boolean_emoji(&item.active)
+            )),
+            ItemChanges::Cancelled => description.push(format!(
+                "**Is Cancelled**\n{} ➜ {}",
+                get_boolean_emoji(&previous_item.is_cancelled),
+                get_boolean_emoji(&item.cancelled)
+            )),
+            ItemChanges::Visible => description.push(format!(
+                "**Is Visible**\n{} ➜ {}",
+                get_boolean_emoji(&previous_item.is_visible),
+                get_boolean_emoji(&item.visible)
             )),
         }
     }
