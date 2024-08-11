@@ -18,13 +18,12 @@ pub async fn new_item(item: &Item) -> Result<(), SerenityError> {
                 &item
                     .leading_bid
                     .clone()
-                    .unwrap_or_else(|| String::from("0")),
+                    .unwrap_or_else(|| String::from("0.00")),
                 true,
             )
+            .field("Next Bid", &item.next_bid, true)
             .field("Slug", &item.slug, true)
-            .field("Location", &item.location, true)
             .field("Market Value", &item.market_value, true)
-            .field("Original Market Value", &item.orig_market_value, true)
             .field(
                 "Current Conversion",
                 &item
@@ -33,7 +32,7 @@ pub async fn new_item(item: &Item) -> Result<(), SerenityError> {
                     .unwrap_or_else(|| String::from("")),
                 true,
             )
-            .field("Next Bid", &item.next_bid, true)
+            .field("Location", &item.location, true)
             .field("AI Cancelled", &item.ai_cancelled, true)
             .field(
                 "Link to product",
@@ -69,10 +68,10 @@ pub async fn send_update(
         match change {
             ItemChanges::Price => description.push(format!(
                 "**Price**\n{} ➜ {}",
-                previous_item.item_price,
+                format!("{}.00", previous_item.item_price),
                 item.leading_bid
                     .clone()
-                    .unwrap_or_else(|| String::from("0"))
+                    .unwrap_or_else(|| String::from("0.00"))
             )),
         }
     }

@@ -1,3 +1,4 @@
+use chrono::NaiveDateTime;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 
@@ -96,7 +97,11 @@ impl Item {
     }
 
     pub fn get_end_time(&self) -> String {
-        String::new()
+        let naive_datetime =
+            NaiveDateTime::parse_from_str(&self.end_time, "%Y-%m-%d %H:%M").unwrap();
+        let unix = naive_datetime.and_utc().timestamp();
+
+        format!("<t:{}:F> (<t:{}:R>)", unix, unix)
     }
 }
 
