@@ -1,6 +1,6 @@
 # PS Auction Bot
 
-A program that grabs the data from [PS Auction](https://psauction.se/) and sends price updates to Discord.
+A program that grabs the data from [PS Auction](https://psauction.se/) and sends updates to Discord.
 
 ## Running with Docker
 
